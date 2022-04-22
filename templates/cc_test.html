@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+
+<p>cc:</p>
+{% for email in cc %}
+    <p> {{ email }} </p>
+{% endfor %}
+
+<p>bcc:</p>
+{% for email in bcc %}
+    <p> {{ email }} </p>
+{% endfor %}
+</body>
+</html>
