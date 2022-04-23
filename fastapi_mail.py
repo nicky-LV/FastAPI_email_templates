@@ -58,6 +58,9 @@ class Mail:
             if context:
                 html_template = html_template.render(**context)
 
+            else:
+                html_template = html_template.render()
+
             # Set subject and recipients
             msg['Subject'] = subject
             msg['From'] = self.username
