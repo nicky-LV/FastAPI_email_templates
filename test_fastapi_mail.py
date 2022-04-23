@@ -2,6 +2,7 @@ import os
 import smtplib
 
 import pytest
+import json
 from jinja2 import Environment, PackageLoader, select_autoescape
 from fastapi_mail import Mail
 from typing import List
@@ -98,7 +99,7 @@ def test_send_email(email_engine, email_username, email_password, smtp_host):
     """ Test sending populated email template"""
     receiver_email: List[str] = ["nickysitnikovs18@gmail.com"]
 
-    email_engine.send_email_template(recipients=receiver_email, subject="Test", email_path="test.html")
+    email_engine.send_email_template(recipients=receiver_email, subject="Test", email_path="test_no_context.html")
 
 
 def test_send_carbon_copy(email_engine, email_username, email_password, smtp_host):
@@ -109,8 +110,8 @@ def test_send_carbon_copy(email_engine, email_username, email_password, smtp_hos
 
     context: dict = {
         "title": "Test",
-        "cc": cc,
-        "bcc": bcc
+        "cc": json.dumps(cc),
+        "bcc": json.dumps(bcc)
     }
 
     email_engine.send_email_template(recipients=receiver_email, cc=cc, bcc=bcc, email_path="cc_test.html",
