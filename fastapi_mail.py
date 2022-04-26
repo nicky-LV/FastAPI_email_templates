@@ -67,10 +67,10 @@ class Mail:
             msg['To'] = ",".join(recipients)
 
             if bcc:
-                msg['Bcc'] = bcc
+                msg['Bcc'] = ",".join(bcc)
 
             if cc:
-                msg['Cc'] = cc
+                msg['Cc'] = ",".join(cc)
 
             # Attach populated jinja2 template to the body of the email
             msg.attach(MIMEText(html_template))
