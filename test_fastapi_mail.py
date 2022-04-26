@@ -4,7 +4,7 @@ import smtplib
 import pytest
 import json
 from jinja2 import Environment, PackageLoader, select_autoescape
-from fastapi_mail import Mail
+from fastapi_email_templates import Mail
 from typing import List
 
 
