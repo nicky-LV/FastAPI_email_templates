@@ -43,7 +43,7 @@ def test_template_discovery():
 
     # Setup jinja2 environment
     env = Environment(
-        loader=PackageLoader("main"),
+        loader=PackageLoader("fastapi_email_templates"),
         autoescape=select_autoescape()
     )
 
@@ -64,7 +64,7 @@ def test_context_population():
 
     # Setup jinja2 environment
     env = Environment(
-        loader=PackageLoader("main"),
+        loader=PackageLoader("fastapi_email_templates"),
         autoescape=select_autoescape()
     )
 

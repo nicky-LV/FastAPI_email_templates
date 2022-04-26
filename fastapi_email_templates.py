@@ -26,7 +26,7 @@ class Mail:
         if os.path.exists("templates"):
             # Load Jinja2 environment for discovering templates
             self.env = Environment(
-                loader=PackageLoader("main"),
+                loader=PackageLoader("fastapi_email_templates"),
                 autoescape=select_autoescape()
             )
 
