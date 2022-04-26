@@ -2,9 +2,8 @@ import os
 import smtplib
 
 import pytest
-import json
 from jinja2 import Environment, PackageLoader, select_autoescape
-from fastapi_email_templates import Mail
+from fastapi_email_templates.main import Mail
 from typing import List
 
 
@@ -38,12 +37,12 @@ def email_engine(email_username, email_password, smtp_host):
 
 def test_template_discovery():
     """ Create a test template within the templates directory and load it. """
-    if not os.path.exists("templates/test.html"):
-        os.mknod("templates/test.html")
+    if not os.path.exists("fastapi_email_templates/templates/test.html"):
+        os.mknod("fastapi_email_templates/templates/test.html")
 
     # Setup jinja2 environment
     env = Environment(
-        loader=PackageLoader("fastapi_email_templates"),
+        loader=PackageLoader("fastapi_email_templates", "templates"),
         autoescape=select_autoescape()
     )
 
@@ -59,12 +58,12 @@ def test_context_population():
         "body": "Test"
     }
 
-    if not os.path.exists("templates/test.html"):
-        os.mknod("templates/test.html")
+    if not os.path.exists("fastapi_email_templates/templates/test.html"):
+        os.mknod("fastapi_email_templates/templates/test.html")
 
     # Setup jinja2 environment
     env = Environment(
-        loader=PackageLoader("fastapi_email_templates"),
+        loader=PackageLoader("fastapi_email_templates", "templates"),
         autoescape=select_autoescape()
     )
 

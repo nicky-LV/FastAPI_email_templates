@@ -23,15 +23,15 @@ class Mail:
         self.ssl = ssl
 
         # Check if templates dir exists.
-        if os.path.exists("templates"):
+        try:
             # Load Jinja2 environment for discovering templates
             self.env = Environment(
                 loader=PackageLoader("fastapi_email_templates"),
                 autoescape=select_autoescape()
             )
 
-        else:
-            raise OSError("There must be a python module named templates in the same directory as main.py")
+        except Exception as e:
+            raise e
 
     def send_email_template(self, recipients: List[str], subject: str, email_path: str,
                             context: dict = None, cc: List[str] = None, bcc: List[str] = None):
@@ -43,7 +43,6 @@ class Mail:
         :param context: dict - Context to pass into jinja2 template
         :param cc: List[str] - Carbon copy recipients
         :param bcc: List[str] - Blind carbon copy recipients
-        :return:
         """
 
         # msg has the multipart MIME-type, as the email may contain data of different MIME types.
@@ -51,7 +50,7 @@ class Mail:
         msg = MIMEMultipart()
 
         # Search for template.
-        if os.path.exists(f"./templates/{email_path}"):
+        if os.path.exists(f"fastapi_email_templates/templates/{email_path}"):
             html_template = self.env.get_template(email_path)
 
             # Populate template with context, if available
