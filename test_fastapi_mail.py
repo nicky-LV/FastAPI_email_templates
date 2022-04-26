@@ -110,8 +110,8 @@ def test_send_carbon_copy(email_engine, email_username, email_password, smtp_hos
 
     context: dict = {
         "title": "Test",
-        "cc": json.dumps(cc),
-        "bcc": json.dumps(bcc)
+        "cc": cc,
+        "bcc": bcc
     }
 
     email_engine.send_email_template(recipients=receiver_email, cc=cc, bcc=bcc, email_path="cc_test.html",
