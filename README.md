@@ -2,8 +2,6 @@
 
 (under development)
 
----
-
 ## Purpose:
 
 FastAPI_email_templates is a package which allows you to send jinja2 template emails simply.
